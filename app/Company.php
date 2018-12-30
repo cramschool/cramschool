@@ -36,5 +36,12 @@ class Company extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    
+    public function getImagePathAttribute()
+    {
+        if ($this->image) {
+            return $this->image->path;
+        }
+
+        return null;
+    }
 }
