@@ -13,11 +13,25 @@ class UsersController
 {
     use UploadImage;
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = auth()->user();
-        return view('backend.users.index')->with(['users' => User::all()]);
-        // return view('backend.users.index')->with(['users' => $user->company]);
+        // $loginUser 為登入者的 user model
+        $loginUser = auth()->user();
+
+        $users = User::where('company_license', $loginUser->company_license);
+
+        if ($keyword = $request->input('keyword')) {
+            $users = $users->where('name', 'like', "%{$keyword}%");
+        }
+
+        if ($type = $request->input('type')) {
+            $users = $users->whereHas($type);
+        }
+
+        // User::where... 是一個 query，其中限制 license 需要與登入者的 license 一樣
+        return view('backend.users.index')->with([
+            'users' => $users->get()
+        ]);
     }
 
     public function create()
