@@ -119,12 +119,14 @@ return [
             'url'         => '/backend/companies/edit',
             'icon'        => 'file',
             // 'label'       => 4,
+            'roles'       => ['company'],
             'label_color' => 'success',
         ],
         [
             'text'        => '教室資料維護',
             'url'         => '/backend/classrooms',
             'icon'        => 'file',
+            'roles'       => ['company', 'teacher'],
             // 'label'       => 4,
             'label_color' => 'success',
         ],
@@ -234,6 +236,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\SubmenuFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+        \App\Menu\MenuFilter::class,
     ],
 
     /*
