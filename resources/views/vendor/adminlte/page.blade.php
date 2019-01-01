@@ -40,7 +40,7 @@
             @else
             <!-- Logo -->
             <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
-                <img src="/{{auth()->user()->belongToCompany()->image->path}}" alt="">
+                <img src="/{{auth()->user()->belongToCompany()->imagePath}}" alt="">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>A</b>LT') !!}</span>
                 <!-- logo for regular state and mobile devices -->

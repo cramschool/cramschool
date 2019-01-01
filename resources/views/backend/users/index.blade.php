@@ -18,15 +18,26 @@
         <div class="box-header">
           <a href="{{ route('backend.users.create') }}" class="btn btn-info">Add</a>
 
-          {{-- <div class="box-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-              <div class="input-group-btn">
-                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          <div class="box-tools">
+            <form action="">
+              {!! csrf_field() !!}
+              <div class="form-group has-feedback">
+                  <select name="type" class="form-control">
+                      <option disabled selected value="">使用者類型</option>
+                      <option value="">所有</option>
+                      <option value="company">老闆</option>
+                      <option value="teacher">老師</option>
+                  </select>
               </div>
-            </div>
-          </div> --}}
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="keyword" class="form-control pull-right" placeholder="Search">
+
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
@@ -36,7 +47,8 @@
               <th>company_license</th>
               <th>account</th>
               <th>name</th>
-              <th>mobile_phone</th>
+              <th>mobile phone</th>
+              <th>operation</th>
             </tr>
             @foreach ($users as $user)
               <tr>
@@ -69,6 +81,14 @@
   <style>
     form {
       display: inline-block;
+    }
+
+    .box-tools > form {
+      display: flex;
+    }
+
+    .box-tools .input-group {
+      margin-left: 1rem;
     }
   </style>
 @endsection

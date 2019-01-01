@@ -74,7 +74,7 @@ class RegisterController extends Controller
         ];
 
         if($request->input("type") == "boss"){
-            $rules = array_merge($rules, [  
+            $rules = array_merge($rules, [
                 'company_name' => 'required|string|max:255',
                 'company_phone' => 'required|string|min:10|max:10',
                 'company_address' => 'required|string|max:255'
@@ -118,19 +118,23 @@ class RegisterController extends Controller
                 'address' => $data['company_address'],
                 'uql' => $data['uql'] ?? null,
             ]);
-            if ($companyLogo = $data['company_logo']){
+            if (isset($data['company_logo'])) {
+                $companyLogo = $data['company_logo'];
+
                 $image = $this->uploadImage($companyLogo);
-    
+
                 $company->image()->create($image->toArray());
             }
         }
-        if ($avatar = $data['avatar']){
+        if (isset($data['avatar'])){
+            $avatar = $data['avatar'];
+
             $image = $this->uploadImage($avatar);
 
             $user->image()->create($image->toArray());
         }
 
-        
+
 
         return $user;
     }
