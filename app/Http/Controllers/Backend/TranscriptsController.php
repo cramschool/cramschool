@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Transcript;
 use App\Imports\TranscriptsImport;
+use App\Exports\TranscriptsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TranscriptsController extends Controller
@@ -42,5 +43,10 @@ class TranscriptsController extends Controller
         Excel::import(new TranscriptsImport, request()->file('transcript-file'));
 
         return redirect()->route('backend.transcripts.index')->with(['status' => 'create success']);
+    }
+
+    public function export(Request $Request)
+    {
+        return Excel::download(new TranscriptsExport, 'transcripts.xlsx');
     }
 }

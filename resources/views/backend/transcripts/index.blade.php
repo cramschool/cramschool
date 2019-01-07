@@ -20,6 +20,7 @@
         <div class="box">
             <div class="box-header">
             <a href="{{ route('backend.transcripts.create') }}" class="btn btn-info">Add</a>
+            <a href="{{ route('backend.transcripts.export') }}" class="btn btn-info">Export</a>
 
             <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">

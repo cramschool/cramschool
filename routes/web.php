@@ -49,6 +49,7 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function () {
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function () {
     Route::name('backend.')->group(function () {
         Route::post('transcripts/import', 'TranscriptsController@import');
+        Route::get('transcripts/export', 'TranscriptsController@export')->name('transcripts.export');
         Route::resource('transcripts', 'TranscriptsController');
     });
 });
