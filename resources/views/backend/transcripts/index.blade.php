@@ -7,6 +7,16 @@
             <p>{{ session('status') }}</p>
             </div>
         @endif
+        <form action="/backend/transcripts/import" method="post" enctype="multipart/form-data">
+          {!! csrf_field() !!}
+          <div class="input-group input-group-sm" style="width: 150px;">
+            <input name="transcript-file" type="file" class="form-control">
+
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default">上傳</button>
+            </div>
+          </div>
+        </form>
         <div class="box">
             <div class="box-header">
             <a href="{{ route('backend.transcripts.create') }}" class="btn btn-info">Add</a>
@@ -14,6 +24,7 @@
             <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
 
                 <div class="input-group-btn">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -64,8 +75,17 @@
     form {
       display: inline-block;
     }
+
+    .box-tools > form {
+      display: flex;
+    }
+
+    .box-tools .input-group {
+      margin-left: 1rem;
+    }
   </style>
 @endsection
+
 @section('js')
   <script>
     var app = new Vue({
