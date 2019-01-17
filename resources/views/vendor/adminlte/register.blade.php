@@ -3,6 +3,14 @@
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
     @yield('css')
+
+<style>
+    img {
+        display: none;
+        max-width: 100%;
+        margin: 2rem 0;
+    }
+</style>
 @stop
 
 @section('body_class', 'register-page')
@@ -47,7 +55,7 @@
                             </span>
                         @endif
                     </div> --}}
-                    
+
                 </template>
                 <div class="form-group has-feedback {{ $errors->has('account') ? 'has-error' : '' }}">
                     <input type="text" name="account" class="form-control" value="{{ old('account') }}"
@@ -123,12 +131,12 @@
                         <input id="upload_img" name="avatar" style="display:none;" type="file" onchange="readURL(this)" targetID="avatar" accept="image/gif, image/jpeg, image/png" class="form-control" value="{{ old('company_logo') }}">
                         <i class="fa fa-photo"></i> 上傳個人圖像
                     </label>
-                    <img id="avatar" src="#" style="display:block; margin:auto;">
+                    <img id="avatar" src="#">
                 </div>
-                
+
                 <template v-if="type == 'boss'">
                     <div class="form-group has-feedback {{ $errors->has('company_license') ? 'has-error' : '' }}">
-                        <input type="text" name="company_license" class="form-control" value="<?php echo uniqid(); ?>" 
+                        <input type="text" name="company_license" class="form-control" value="<?php echo uniqid(); ?>"
                                placeholder=""  >
                         <span class="glyphicon glyphicon-list form-control-feedback"></span>
                         @if ($errors->has('company_license'))
@@ -172,7 +180,7 @@
                             <input id="upload_img" name="company_logo" style="display:none;" type="file" onchange="readURL(this)" targetID="company_logo" accept="image/gif, image/jpeg, image/png" class="form-control" value="{{ old('company_logo') }}">
                             <i class="fa fa-photo"></i> 上傳公司LOGO
                         </label>
-                        <img id="company_logo" src="#" style="display:block; margin:auto;">
+                        <img id="company_logo" src="#">
                     </div>
                     {{-- <div class="form-group has-feedback {{ $errors->has('company_logo') ? 'has-error' : '' }}">
                         <input type="file" name="company_logo" class="form-control" value="{{ old('company_logo') }}">
@@ -184,9 +192,9 @@
                         @endif
                     </div> --}}
                 </template>
-                    
+
                 <button type="submit"
-                        class="btn btn-primary btn-block btn-flat" 
+                        class="btn btn-primary btn-block btn-flat"
                 >{{ trans('adminlte::adminlte.register') }}</button>
             </form>
             <div class="auth-links">
@@ -215,10 +223,11 @@ var app = new Vue({
         var reader = new FileReader();
         reader.onload = function (e) {
            var img = document.getElementById(imageTagID);
-           img.setAttribute("src", e.target.result)           
-        }          
-        reader.readAsDataURL(input.files[0]);           
-      }           
-    }          
+           img.setAttribute("src", e.target.result)
+           img.setAttribute("style", "display: block")
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
 </script>
 @stop

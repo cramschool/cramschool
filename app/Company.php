@@ -36,6 +36,11 @@ class Company extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function classrooms()
+    {
+        return $this->hasMany(Classroom::class);
+    }
+
     public function getImagePathAttribute()
     {
         if ($this->image) {

@@ -23,4 +23,14 @@ class Transcript extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

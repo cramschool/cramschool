@@ -20,9 +20,10 @@ class ClassroomsController
 
     public function index()
     {
-        
+        $user = auth()->user();
+
         return view('backend.classrooms.index')->with([
-            'classrooms' => Classroom::with("teacher", "company")->get(),
+            'classrooms' => Classroom::where('company_id', $user->belongToCompany()->id)->with("teacher", "company")->get(),
         ]);
     }
 
