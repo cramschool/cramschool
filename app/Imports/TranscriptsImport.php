@@ -5,8 +5,9 @@ namespace App\Imports;
 use App\Transcript;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TranscriptsImport implements ToModel
+class TranscriptsImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -15,6 +16,8 @@ class TranscriptsImport implements ToModel
      */
     public function model(array $row)
     {
+        dd($row);
+        $row = collect($row)->values()->toArray();
         $classroom = Classroom::where('name', $row[0])->frist();
         $student = Student::where('name', $row[1])->first();
 
